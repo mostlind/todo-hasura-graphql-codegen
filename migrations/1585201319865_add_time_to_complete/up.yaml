@@ -1,0 +1,7 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: "alter table todo\nadd column time_to_complete_in_seconds int generated always
+      as (\n  case when started_at is not null and completed_at is not null \n    then
+      extract(epoch FROM (completed_at - started_at))\n  else null \n  end\n) stored;"
+  type: run_sql

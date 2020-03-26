@@ -1,0 +1,22 @@
+overwrite: true
+schema: "http://localhost:8080/v1/graphql"
+documents: "src/**/*.graphql"
+watch:
+  - "migrations/**/*.yaml"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-urql"
+    config:
+      withHooks: true
+      withComponent: false
+
+  graphql.schema.json:
+    plugins:
+      - introspection
+
+  schema.graphql:
+    plugins:
+      - schema-ast

@@ -1,0 +1,5 @@
+schemaPath: ./graphql.schema.json
+includes: ["**/*.graphql"]
+extensions:
+  endpoints:
+    default: http://localhost:8080/v1/graphql

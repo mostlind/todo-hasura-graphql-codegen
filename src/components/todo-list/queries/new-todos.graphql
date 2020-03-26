@@ -1,0 +1,11 @@
+query NewTodos {
+  todo(where: { state: { _eq: not_started } }) {
+    id
+    description
+    state
+    created_at
+    sub_tasks {
+      id
+    }
+  }
+}

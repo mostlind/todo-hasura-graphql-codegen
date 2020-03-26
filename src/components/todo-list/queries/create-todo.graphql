@@ -1,0 +1,7 @@
+mutation CreateTodo($description: String!) {
+  insert_todo(objects: { description: $description }) {
+    returning {
+      id
+    }
+  }
+}

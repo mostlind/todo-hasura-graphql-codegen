@@ -1,0 +1,7 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: "alter table todo\nadd column state text generated always as \n(case\n    when
+      completed_at is not null then 'completed'\n    when started_at is not null then
+      'in_progress'\n    else 'not_started'\nend)\nstored references todo_state(todo_state);"
+  type: run_sql

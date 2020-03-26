@@ -1,0 +1,7 @@
+mutation StartTodo($todo_id: uuid, $date: timestamptz) {
+  update_todo(_set: { started_at: $date }, where: { id: { _eq: $todo_id } }) {
+    returning {
+      id
+    }
+  }
+}

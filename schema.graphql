@@ -1,0 +1,550 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+type mutation_root {
+  delete_sub_tasks(where: sub_tasks_bool_exp!): sub_tasks_mutation_response
+  delete_todo(where: todo_bool_exp!): todo_mutation_response
+  delete_todo_state(where: todo_state_bool_exp!): todo_state_mutation_response
+  insert_sub_tasks(objects: [sub_tasks_insert_input!]!, on_conflict: sub_tasks_on_conflict): sub_tasks_mutation_response
+  insert_todo(objects: [todo_insert_input!]!, on_conflict: todo_on_conflict): todo_mutation_response
+  insert_todo_state(objects: [todo_state_insert_input!]!, on_conflict: todo_state_on_conflict): todo_state_mutation_response
+  update_sub_tasks(_set: sub_tasks_set_input, where: sub_tasks_bool_exp!): sub_tasks_mutation_response
+  update_todo(_inc: todo_inc_input, _set: todo_set_input, where: todo_bool_exp!): todo_mutation_response
+  update_todo_state(_set: todo_state_set_input, where: todo_state_bool_exp!): todo_state_mutation_response
+}
+
+enum order_by {
+  asc
+  asc_nulls_first
+  asc_nulls_last
+  desc
+  desc_nulls_first
+  desc_nulls_last
+}
+
+type query_root {
+  sub_tasks(distinct_on: [sub_tasks_select_column!], limit: Int, offset: Int, order_by: [sub_tasks_order_by!], where: sub_tasks_bool_exp): [sub_tasks!]!
+  sub_tasks_aggregate(distinct_on: [sub_tasks_select_column!], limit: Int, offset: Int, order_by: [sub_tasks_order_by!], where: sub_tasks_bool_exp): sub_tasks_aggregate!
+  sub_tasks_by_pk(id: uuid!): sub_tasks
+  todo(distinct_on: [todo_select_column!], limit: Int, offset: Int, order_by: [todo_order_by!], where: todo_bool_exp): [todo!]!
+  todo_aggregate(distinct_on: [todo_select_column!], limit: Int, offset: Int, order_by: [todo_order_by!], where: todo_bool_exp): todo_aggregate!
+  todo_by_pk(id: uuid!): todo
+  todo_state(distinct_on: [todo_state_select_column!], limit: Int, offset: Int, order_by: [todo_state_order_by!], where: todo_state_bool_exp): [todo_state!]!
+  todo_state_aggregate(distinct_on: [todo_state_select_column!], limit: Int, offset: Int, order_by: [todo_state_order_by!], where: todo_state_bool_exp): todo_state_aggregate!
+  todo_state_by_pk(todo_state: String!): todo_state
+}
+
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+type sub_tasks {
+  description: String!
+  id: uuid!
+  todo_id: uuid!
+}
+
+type sub_tasks_aggregate {
+  aggregate: sub_tasks_aggregate_fields
+  nodes: [sub_tasks!]!
+}
+
+type sub_tasks_aggregate_fields {
+  count(columns: [sub_tasks_select_column!], distinct: Boolean): Int
+  max: sub_tasks_max_fields
+  min: sub_tasks_min_fields
+}
+
+input sub_tasks_aggregate_order_by {
+  count: order_by
+  max: sub_tasks_max_order_by
+  min: sub_tasks_min_order_by
+}
+
+input sub_tasks_arr_rel_insert_input {
+  data: [sub_tasks_insert_input!]!
+  on_conflict: sub_tasks_on_conflict
+}
+
+input sub_tasks_bool_exp {
+  _and: [sub_tasks_bool_exp]
+  _not: sub_tasks_bool_exp
+  _or: [sub_tasks_bool_exp]
+  description: String_comparison_exp
+  id: uuid_comparison_exp
+  todo_id: uuid_comparison_exp
+}
+
+enum sub_tasks_constraint {
+  sub_tasks_pkey
+}
+
+input sub_tasks_insert_input {
+  description: String
+  id: uuid
+  todo_id: uuid
+}
+
+type sub_tasks_max_fields {
+  description: String
+}
+
+input sub_tasks_max_order_by {
+  description: order_by
+}
+
+type sub_tasks_min_fields {
+  description: String
+}
+
+input sub_tasks_min_order_by {
+  description: order_by
+}
+
+type sub_tasks_mutation_response {
+  affected_rows: Int!
+  returning: [sub_tasks!]!
+}
+
+input sub_tasks_obj_rel_insert_input {
+  data: sub_tasks_insert_input!
+  on_conflict: sub_tasks_on_conflict
+}
+
+input sub_tasks_on_conflict {
+  constraint: sub_tasks_constraint!
+  update_columns: [sub_tasks_update_column!]!
+  where: sub_tasks_bool_exp
+}
+
+input sub_tasks_order_by {
+  description: order_by
+  id: order_by
+  todo_id: order_by
+}
+
+enum sub_tasks_select_column {
+  description
+  id
+  todo_id
+}
+
+input sub_tasks_set_input {
+  description: String
+  id: uuid
+  todo_id: uuid
+}
+
+enum sub_tasks_update_column {
+  description
+  id
+  todo_id
+}
+
+type subscription_root {
+  sub_tasks(distinct_on: [sub_tasks_select_column!], limit: Int, offset: Int, order_by: [sub_tasks_order_by!], where: sub_tasks_bool_exp): [sub_tasks!]!
+  sub_tasks_aggregate(distinct_on: [sub_tasks_select_column!], limit: Int, offset: Int, order_by: [sub_tasks_order_by!], where: sub_tasks_bool_exp): sub_tasks_aggregate!
+  sub_tasks_by_pk(id: uuid!): sub_tasks
+  todo(distinct_on: [todo_select_column!], limit: Int, offset: Int, order_by: [todo_order_by!], where: todo_bool_exp): [todo!]!
+  todo_aggregate(distinct_on: [todo_select_column!], limit: Int, offset: Int, order_by: [todo_order_by!], where: todo_bool_exp): todo_aggregate!
+  todo_by_pk(id: uuid!): todo
+  todo_state(distinct_on: [todo_state_select_column!], limit: Int, offset: Int, order_by: [todo_state_order_by!], where: todo_state_bool_exp): [todo_state!]!
+  todo_state_aggregate(distinct_on: [todo_state_select_column!], limit: Int, offset: Int, order_by: [todo_state_order_by!], where: todo_state_bool_exp): todo_state_aggregate!
+  todo_state_by_pk(todo_state: String!): todo_state
+}
+
+scalar timestamptz
+
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+type todo {
+  completed_at: timestamptz
+  created_at: timestamptz!
+  description: String!
+  id: uuid!
+  started_at: timestamptz
+  state: todo_state_enum!
+  sub_tasks(distinct_on: [sub_tasks_select_column!], limit: Int, offset: Int, order_by: [sub_tasks_order_by!], where: sub_tasks_bool_exp): [sub_tasks!]!
+  sub_tasks_aggregate(distinct_on: [sub_tasks_select_column!], limit: Int, offset: Int, order_by: [sub_tasks_order_by!], where: sub_tasks_bool_exp): sub_tasks_aggregate!
+  time_to_complete_in_seconds: Int
+}
+
+type todo_aggregate {
+  aggregate: todo_aggregate_fields
+  nodes: [todo!]!
+}
+
+type todo_aggregate_fields {
+  avg: todo_avg_fields
+  count(columns: [todo_select_column!], distinct: Boolean): Int
+  max: todo_max_fields
+  min: todo_min_fields
+  stddev: todo_stddev_fields
+  stddev_pop: todo_stddev_pop_fields
+  stddev_samp: todo_stddev_samp_fields
+  sum: todo_sum_fields
+  var_pop: todo_var_pop_fields
+  var_samp: todo_var_samp_fields
+  variance: todo_variance_fields
+}
+
+input todo_aggregate_order_by {
+  avg: todo_avg_order_by
+  count: order_by
+  max: todo_max_order_by
+  min: todo_min_order_by
+  stddev: todo_stddev_order_by
+  stddev_pop: todo_stddev_pop_order_by
+  stddev_samp: todo_stddev_samp_order_by
+  sum: todo_sum_order_by
+  var_pop: todo_var_pop_order_by
+  var_samp: todo_var_samp_order_by
+  variance: todo_variance_order_by
+}
+
+input todo_arr_rel_insert_input {
+  data: [todo_insert_input!]!
+  on_conflict: todo_on_conflict
+}
+
+type todo_avg_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_avg_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+input todo_bool_exp {
+  _and: [todo_bool_exp]
+  _not: todo_bool_exp
+  _or: [todo_bool_exp]
+  completed_at: timestamptz_comparison_exp
+  created_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  id: uuid_comparison_exp
+  started_at: timestamptz_comparison_exp
+  state: todo_state_enum_comparison_exp
+  sub_tasks: sub_tasks_bool_exp
+  time_to_complete_in_seconds: Int_comparison_exp
+}
+
+enum todo_constraint {
+  todos_pkey
+}
+
+input todo_inc_input {
+  time_to_complete_in_seconds: Int
+}
+
+input todo_insert_input {
+  completed_at: timestamptz
+  created_at: timestamptz
+  description: String
+  id: uuid
+  started_at: timestamptz
+  state: todo_state_enum
+  sub_tasks: sub_tasks_arr_rel_insert_input
+  time_to_complete_in_seconds: Int
+}
+
+type todo_max_fields {
+  completed_at: timestamptz
+  created_at: timestamptz
+  description: String
+  started_at: timestamptz
+  time_to_complete_in_seconds: Int
+}
+
+input todo_max_order_by {
+  completed_at: order_by
+  created_at: order_by
+  description: order_by
+  started_at: order_by
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_min_fields {
+  completed_at: timestamptz
+  created_at: timestamptz
+  description: String
+  started_at: timestamptz
+  time_to_complete_in_seconds: Int
+}
+
+input todo_min_order_by {
+  completed_at: order_by
+  created_at: order_by
+  description: order_by
+  started_at: order_by
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_mutation_response {
+  affected_rows: Int!
+  returning: [todo!]!
+}
+
+input todo_obj_rel_insert_input {
+  data: todo_insert_input!
+  on_conflict: todo_on_conflict
+}
+
+input todo_on_conflict {
+  constraint: todo_constraint!
+  update_columns: [todo_update_column!]!
+  where: todo_bool_exp
+}
+
+input todo_order_by {
+  completed_at: order_by
+  created_at: order_by
+  description: order_by
+  id: order_by
+  started_at: order_by
+  state: order_by
+  sub_tasks_aggregate: sub_tasks_aggregate_order_by
+  time_to_complete_in_seconds: order_by
+}
+
+enum todo_select_column {
+  completed_at
+  created_at
+  description
+  id
+  started_at
+  state
+  time_to_complete_in_seconds
+}
+
+input todo_set_input {
+  completed_at: timestamptz
+  created_at: timestamptz
+  description: String
+  id: uuid
+  started_at: timestamptz
+  state: todo_state_enum
+  time_to_complete_in_seconds: Int
+}
+
+type todo_state {
+  todo_state: String!
+}
+
+type todo_state_aggregate {
+  aggregate: todo_state_aggregate_fields
+  nodes: [todo_state!]!
+}
+
+type todo_state_aggregate_fields {
+  count(columns: [todo_state_select_column!], distinct: Boolean): Int
+  max: todo_state_max_fields
+  min: todo_state_min_fields
+}
+
+input todo_state_aggregate_order_by {
+  count: order_by
+  max: todo_state_max_order_by
+  min: todo_state_min_order_by
+}
+
+input todo_state_arr_rel_insert_input {
+  data: [todo_state_insert_input!]!
+  on_conflict: todo_state_on_conflict
+}
+
+input todo_state_bool_exp {
+  _and: [todo_state_bool_exp]
+  _not: todo_state_bool_exp
+  _or: [todo_state_bool_exp]
+  todo_state: String_comparison_exp
+}
+
+enum todo_state_constraint {
+  todo_state_pkey
+}
+
+enum todo_state_enum {
+  completed
+  in_progress
+  not_started
+}
+
+input todo_state_enum_comparison_exp {
+  _eq: todo_state_enum
+  _in: [todo_state_enum!]
+  _is_null: Boolean
+  _neq: todo_state_enum
+  _nin: [todo_state_enum!]
+}
+
+input todo_state_insert_input {
+  todo_state: String
+}
+
+type todo_state_max_fields {
+  todo_state: String
+}
+
+input todo_state_max_order_by {
+  todo_state: order_by
+}
+
+type todo_state_min_fields {
+  todo_state: String
+}
+
+input todo_state_min_order_by {
+  todo_state: order_by
+}
+
+type todo_state_mutation_response {
+  affected_rows: Int!
+  returning: [todo_state!]!
+}
+
+input todo_state_obj_rel_insert_input {
+  data: todo_state_insert_input!
+  on_conflict: todo_state_on_conflict
+}
+
+input todo_state_on_conflict {
+  constraint: todo_state_constraint!
+  update_columns: [todo_state_update_column!]!
+  where: todo_state_bool_exp
+}
+
+input todo_state_order_by {
+  todo_state: order_by
+}
+
+enum todo_state_select_column {
+  todo_state
+}
+
+input todo_state_set_input {
+  todo_state: String
+}
+
+enum todo_state_update_column {
+  todo_state
+}
+
+type todo_stddev_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_stddev_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_stddev_pop_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_stddev_pop_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_stddev_samp_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_stddev_samp_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_sum_fields {
+  time_to_complete_in_seconds: Int
+}
+
+input todo_sum_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+enum todo_update_column {
+  completed_at
+  created_at
+  description
+  id
+  started_at
+  state
+  time_to_complete_in_seconds
+}
+
+type todo_var_pop_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_var_pop_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_var_samp_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_var_samp_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+type todo_variance_fields {
+  time_to_complete_in_seconds: Float
+}
+
+input todo_variance_order_by {
+  time_to_complete_in_seconds: order_by
+}
+
+scalar uuid
+
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}

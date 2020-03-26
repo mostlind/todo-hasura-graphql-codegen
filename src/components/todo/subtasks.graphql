@@ -1,0 +1,6 @@
+query SubTasksForTodo($todo_id: uuid!) {
+  sub_tasks(where: { todo_id: { _eq: $todo_id } }) {
+    id
+    description
+  }
+}

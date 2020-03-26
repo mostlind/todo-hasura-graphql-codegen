@@ -1,0 +1,10 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."todo_state"("todo_state" text NOT NULL, PRIMARY KEY
+      ("todo_state") );
+  type: run_sql
+- args:
+    name: todo_state
+    schema: public
+  type: add_existing_table_or_view

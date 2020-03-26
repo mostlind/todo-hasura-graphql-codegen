@@ -1,0 +1,17 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE EXTENSION IF NOT EXISTS pgcrypto;
+  type: run_sql
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."sub_tasks"("id" uuid NOT NULL DEFAULT gen_random_uuid(),
+      "description" text NOT NULL, "todo_id" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN
+      KEY ("todo_id") REFERENCES "public"."todo"("id") ON UPDATE restrict ON DELETE
+      restrict);
+  type: run_sql
+- args:
+    name: sub_tasks
+    schema: public
+  type: add_existing_table_or_view

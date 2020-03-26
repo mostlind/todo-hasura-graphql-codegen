@@ -1,0 +1,16 @@
+- args:
+    permission:
+      columns:
+      - completed_at
+      - description
+      - started_at
+      filter: {}
+      localPresets:
+      - key: ""
+        value: ""
+      set: {}
+    role: user
+    table:
+      name: todo
+      schema: public
+  type: create_update_permission

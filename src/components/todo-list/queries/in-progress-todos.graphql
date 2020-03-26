@@ -1,0 +1,8 @@
+query InProgressTodos {
+  todo(where: { state: { _eq: in_progress } }) {
+    id
+    description
+    state
+    created_at
+  }
+}

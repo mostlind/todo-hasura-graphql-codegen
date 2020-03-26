@@ -1,0 +1,17 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE EXTENSION IF NOT EXISTS pgcrypto;
+  type: run_sql
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."todos"("id" uuid NOT NULL DEFAULT gen_random_uuid(),
+      "description" text NOT NULL, "state" text NOT NULL, PRIMARY KEY ("id") , FOREIGN
+      KEY ("state") REFERENCES "public"."todo_state"("todo_state") ON UPDATE cascade
+      ON DELETE cascade);
+  type: run_sql
+- args:
+    name: todos
+    schema: public
+  type: add_existing_table_or_view

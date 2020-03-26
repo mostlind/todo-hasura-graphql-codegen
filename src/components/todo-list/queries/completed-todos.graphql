@@ -1,0 +1,9 @@
+query CompletedTodos {
+  todo(where: { state: { _eq: completed } }) {
+    id
+    description
+    state
+    created_at
+    time_to_complete_in_seconds
+  }
+}
