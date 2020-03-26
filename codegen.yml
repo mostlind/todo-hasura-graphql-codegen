@@ -12,11 +12,3 @@ generates:
     config:
       withHooks: true
       withComponent: false
-
-  graphql.schema.json:
-    plugins:
-      - introspection
-
-  schema.graphql:
-    plugins:
-      - schema-ast

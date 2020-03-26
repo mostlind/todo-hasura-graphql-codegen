@@ -1,0 +1,7 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: |-
+      insert into todo_state
+      values ('not_started'), ('in_progress'), ('completed');
+  type: run_sql
