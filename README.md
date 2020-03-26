@@ -20,3 +20,7 @@ Commands:
    - `npm run console` to start hasura console
 
 1. The frontend should be running at http://localhost:8080
+
+## GraphQL Auto-Complete
+
+For graphql auto-complete, install [this package](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo)
