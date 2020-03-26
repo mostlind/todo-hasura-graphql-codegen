@@ -8,7 +8,9 @@
     "generate": "graphql-codegen --config codegen.yml",
     "console": "hasura console",
     "start": "parcel -p 8081 src/index.html",
-    "start:backend": "docker-compose up"
+    "start:backend": "docker-compose up -d",
+    "stop:backend": "docker-compose down",
+    "migrate": "hasura migrate apply"
   },
   "author": "",
   "license": "ISC",

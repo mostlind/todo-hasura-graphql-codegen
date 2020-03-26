@@ -10,17 +10,12 @@ services:
     environment:
       POSTGRES_PASSWORD: postgrespassword
   graphql-engine:
-    image: hasura/graphql-engine:v1.1.0.cli-migrations
+    image: hasura/graphql-engine:v1.1.0
     ports:
       - "8080:8080"
     depends_on:
       - "postgres"
     restart: always
-    volumes:
-      - type: bind
-        source: ./migrations
-        target: /hasura-migrations
-        read_only: true
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       HASURA_GRAPHQL_ENABLE_CONSOLE: "false" # set to "false" to disable console
