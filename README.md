@@ -11,7 +11,6 @@ Commands:
 
 1. `npm install` to install deps
 1. `npm run start:backend` to run backend
-   - `npm run stop:backend` to stop
 1. `npm run migrate` to apply migrations
 1. Run in seperate terminals:
 
@@ -20,6 +19,10 @@ Commands:
    - `npm run console` to start hasura console
 
 1. The frontend should be running at http://localhost:8080
+
+## Stopping the backend
+
+Run `npm run stop:backend`
 
 ## GraphQL Auto-Complete
 
