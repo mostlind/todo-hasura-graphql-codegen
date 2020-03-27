@@ -18,7 +18,7 @@ Commands:
    - `npm run generate` to start code generation watcher
    - `npm run console` to start hasura console
 
-1. The frontend should be running at http://localhost:8080
+1. The frontend should be running at http://localhost:8081
 
 ## Stopping the backend
 
