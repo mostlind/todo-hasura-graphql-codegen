@@ -18,6 +18,10 @@ import {
 } from "../../generated/graphql";
 import { Todo } from "../todo";
 
+const context = {
+  additionalTypenames: ["todo"]
+};
+
 function TodosSection({ header, todos }: { header: string; todos: any }) {
   return (
     <>
@@ -36,9 +40,9 @@ function TodosSection({ header, todos }: { header: string; todos: any }) {
 }
 
 export function Location() {
-  const [newTodos] = useNewTodosQuery({});
-  const [inProgressTodos] = useInProgressTodosQuery({});
-  const [completedTodos] = useCompletedTodosQuery({});
+  const [newTodos] = useNewTodosQuery({ context });
+  const [inProgressTodos] = useInProgressTodosQuery({ context });
+  const [completedTodos] = useCompletedTodosQuery({ context });
 
   const [created, createTodo] = useCreateTodoMutation();
   const [description, setDescription] = useState("");
