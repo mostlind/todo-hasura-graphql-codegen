@@ -47,4 +47,7 @@ For graphql auto-complete, install [this package](https://marketplace.visualstud
 ## Todo:
 
 - Integrate [Urql DevTools](https://github.com/FormidableLabs/urql-devtools)
-- MDX for interactive documentation?
+- Storybook UI for interactive documentation?
+- Add Google Analytics with `react-ga` library
+- Add react router and hook up route changes to Google Analytics
+- Remove Material UI, maybe check out Reach UI instead?
