@@ -12,3 +12,7 @@ generates:
     config:
       withHooks: true
       withComponent: false
+
+  schema.graphql:
+    plugins:
+      - schema-ast

@@ -7,9 +7,7 @@ import {
   subscriptionExchange
 } from "urql";
 import { SubscriptionClient } from "subscriptions-transport-ws";
-import { Location } from "./components/todo-list";
-import { Container, AppBar, Toolbar, Typography } from "@material-ui/core";
-import { css } from "emotion";
+import { App } from "./App";
 
 const subscriptionClient = new SubscriptionClient(
   "ws://localhost:8080/v1/graphql",
@@ -29,26 +27,6 @@ const client = createClient({
     })
   ]
 });
-
-const contaier = css`
-  text-align: center;
-  padding: 100px;
-`;
-
-function App() {
-  return (
-    <>
-      <AppBar>
-        <Toolbar>
-          <Typography variant="h6">Do the thing</Typography>
-        </Toolbar>
-      </AppBar>
-      <Container maxWidth="md" className={contaier}>
-        <Location />
-      </Container>
-    </>
-  );
-}
 
 render(
   <Provider value={client}>

@@ -39,7 +39,7 @@ function TodosSection({ header, todos }: { header: string; todos: any }) {
   );
 }
 
-export function Location() {
+export function TodoList() {
   const [newTodos] = useNewTodosQuery({ context });
   const [inProgressTodos] = useInProgressTodosQuery({ context });
   const [completedTodos] = useCompletedTodosQuery({ context });
@@ -62,12 +62,12 @@ export function Location() {
         <Grid item xs>
           <TextField
             variant="outlined"
-            placeholder="What needs to get done?"
             type="text"
             margin="dense"
             fullWidth
-            required
+            label="What needs to get done?"
             value={description}
+            id="todo-description-input"
             onChange={e => setDescription(e.target.value)}
           />
         </Grid>

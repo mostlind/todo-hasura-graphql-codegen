@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Todo, Todo_State_Enum } from "../../generated/graphql";
+import { Todo as ITodo, Todo_State_Enum } from "../../generated/graphql";
 import {
   Typography,
   Button,
@@ -52,7 +52,7 @@ function nextState(state: Todo_State_Enum) {
 }
 
 interface TodoProps {
-  todo: Todo;
+  todo: ITodo;
 }
 
 export function Todo({ todo }: TodoProps) {
@@ -78,54 +78,68 @@ export function Todo({ todo }: TodoProps) {
       <ListItemIcon>
         <Icon state={state} />
       </ListItemIcon>
-      <Grid container spacing={2}>
-        <Grid xs item>
-          <Typography variant="h5" component="h2" align="left">
-            {description}
-          </Typography>
-        </Grid>
-        {todo.time_to_complete_in_seconds && (
+      <Grid container direction="column">
+        <Grid container spacing={2}>
           <Grid xs item>
-            <Typography variant="body1" align="left">
-              Completed in {Math.round(todo.time_to_complete_in_seconds / 60)}{" "}
-              minutes
+            <Typography
+              variant="h5"
+              component="h2"
+              align="left"
+              data-testid="todo-title"
+            >
+              {description}
             </Typography>
           </Grid>
-        )}
-        <Grid item>
-          <Button
-            onClick={() => {
-              createSubtask({ todo_id: id, description: "some subtask" });
-            }}
-            color="secondary"
-            disabled={state === Todo_State_Enum.Completed}
-          >
-            Add subtask
-          </Button>
+          {todo.time_to_complete_in_seconds && (
+            <Grid xs item>
+              <Typography variant="body1" align="left">
+                Completed in {Math.round(todo.time_to_complete_in_seconds / 60)}{" "}
+                minutes
+              </Typography>
+            </Grid>
+          )}
+          <Grid item>
+            <Button
+              onClick={() => {
+                createSubtask({ todo_id: id, description: "some subtask" });
+              }}
+              color="secondary"
+              disabled={state === Todo_State_Enum.Completed}
+            >
+              Add subtask
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              onClick={() => {
+                if (state === Todo_State_Enum.NotStarted) {
+                  startTodo({ todo_id: id, date: new Date() });
+                } else {
+                  completeTodo({ todo_id: id, date: new Date() });
+                }
+              }}
+              color="secondary"
+              disabled={state === Todo_State_Enum.Completed}
+            >
+              {buttonText(state)}
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Button
-            onClick={() => {
-              if (state === Todo_State_Enum.NotStarted) {
-                startTodo({ todo_id: id, date: new Date() });
-              } else {
-                completeTodo({ todo_id: id, date: new Date() });
-              }
-            }}
-            color="secondary"
-            disabled={state === Todo_State_Enum.Completed}
-          >
-            {buttonText(state)}
-          </Button>
-        </Grid>
-      </Grid>
-      <List>
-        <ListItem>
-          {subTasks.data?.sub_tasks.map(() => (
-            <p>{description}</p>
+        <List>
+          {subTasks.data?.sub_tasks.map(({ id, description }) => (
+            <ListItem key={id}>
+              <Typography
+                variant="h6"
+                component="h3"
+                align="left"
+                data-testid={id}
+              >
+                {description}
+              </Typography>
+            </ListItem>
           ))}
-        </ListItem>
-      </List>
+        </List>
+      </Grid>
     </ListItem>
   );
 }
