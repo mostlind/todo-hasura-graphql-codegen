@@ -1,8 +1,8 @@
-import schemaSource from "../schema.graphql";
-import { buildSchema } from "graphql";
+import { buildASTSchema } from "graphql";
 import { addMockFunctionsToSchema, IMocks } from "graphql-tools";
 import { createClient, dedupExchange, cacheExchange } from "urql";
 import { schemaExchange } from "urql-exchange-schema";
+import * as schemaAst from "../schema.graphql";
 
 //https://www.apollographql.com/docs/graphql-tools/mocking/
 const baseMocks = {
@@ -11,7 +11,7 @@ const baseMocks = {
 };
 
 export function mockUrqlClient(mocks: IMocks = {}) {
-  const schema = buildSchema(schemaSource);
+  const schema = buildASTSchema(schemaAst);
 
   addMockFunctionsToSchema({ schema, mocks: Object.assign(baseMocks, mocks) });
 
