@@ -1,5 +1,8 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Container } from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 import { TodoList } from "./components/todo-list";
 import { css } from "emotion";
 

@@ -1,33 +1,17 @@
 import React, { useMemo } from "react";
-import { Todo as ITodo, Todo_State_Enum } from "../../generated/graphql";
 import {
-  Typography,
-  Button,
-  Grid,
-  ListItemIcon,
-  ListItem,
-  List
-} from "@material-ui/core";
-import {
+  Todo as ITodo,
+  Todo_State_Enum,
   useStartTodoMutation,
   useCompleteTodoMutation,
   useSubTasksForTodoQuery,
   useAddSubtaskToDoMutation
 } from "../../generated/graphql";
-import CheckCircle from "@material-ui/icons/CheckCircle";
-import RotateRight from "@material-ui/icons/RotateRight";
-import RadioButtonUnchecked from "@material-ui/icons/RadioButtonUnchecked";
-
-function Icon({ state }: { state: Todo_State_Enum }) {
-  switch (state) {
-    case Todo_State_Enum.NotStarted:
-      return <RadioButtonUnchecked />;
-    case Todo_State_Enum.InProgress:
-      return <RotateRight />;
-    case Todo_State_Enum.Completed:
-      return <CheckCircle />;
-  }
-}
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import ListItem from "@material-ui/core/ListItem";
+import List from "@material-ui/core/List";
 
 function buttonText(state: Todo_State_Enum) {
   switch (state) {
@@ -37,17 +21,6 @@ function buttonText(state: Todo_State_Enum) {
       return "Complete";
     case Todo_State_Enum.Completed:
       return "Done";
-  }
-}
-
-function nextState(state: Todo_State_Enum) {
-  switch (state) {
-    case Todo_State_Enum.NotStarted:
-      return Todo_State_Enum.InProgress;
-    case Todo_State_Enum.InProgress:
-      return Todo_State_Enum.Completed;
-    case Todo_State_Enum.Completed:
-      return Todo_State_Enum.Completed;
   }
 }
 
@@ -75,9 +48,6 @@ export function Todo({ todo }: TodoProps) {
   }
   return (
     <ListItem>
-      <ListItemIcon>
-        <Icon state={state} />
-      </ListItemIcon>
       <Grid container direction="column">
         <Grid container spacing={2}>
           <Grid xs item>
