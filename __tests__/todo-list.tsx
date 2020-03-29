@@ -9,6 +9,8 @@ import { Todo_State_Enum } from "../src/generated/graphql";
 
 test("App renders todos", async () => {
   const newItems = [{ description: "a thing" }];
+
+  // create mock client with todo resolver that returns items if the component queries for new todos
   const client = mockUrqlClient({
     query_root: () => ({
       todo: (_: any, args: any) => {
@@ -21,19 +23,27 @@ test("App renders todos", async () => {
     })
   });
 
+  // Render app with mock client
   render(
     <Provider value={client}>
       <App />
     </Provider>
   );
 
+  // Wait for todos to be rendered
   const items = await waitFor(() => screen.getAllByTestId("todo-title"));
+
+  // Assert that todo titles match those returned from mock client
   expect(items.map(item => item.innerHTML)).toEqual(["a thing"]);
 });
 
 test("Add a new todo", async () => {
+  // create empty list of todos to be returned by mock client
   const newItems: { description: string }[] = [];
+
+  // create mock client
   const client = mockUrqlClient({
+    // returns items if the component queries for new todos
     query_root: () => ({
       todo: (_: any, args: any) => {
         if (args?.where?.state?._eq === Todo_State_Enum.NotStarted) {
@@ -44,6 +54,7 @@ test("Add a new todo", async () => {
       }
     }),
 
+    // Adds a new todo with passed in description when the insert_todo mutation is called
     mutation_root: () => ({
       insert_todo: (_: any, args: any) => {
         newItems.push({ description: args?.objects?.[0]?.description });
@@ -52,8 +63,10 @@ test("Add a new todo", async () => {
     })
   });
 
+  // create spy to check that mutation was called
   const mutationSpy = jest.spyOn(client, "executeMutation");
 
+  // render app with mock client
   render(
     <Provider value={client}>
       <App />
