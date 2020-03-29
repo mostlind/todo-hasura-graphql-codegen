@@ -44,6 +44,12 @@ For graphql auto-complete, install [this package](https://marketplace.visualstud
 - custom resolvers can be added to `mockUrqlClient` to test specific functionality
 - See `__tests__` for examples
 
+### Testing Libraries
+
+- [Jest](https://jestjs.io/) for test running and assertions
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to render components, fire events, etc.
+- [Graphql Tools](https://www.apollographql.com/docs/graphql-tools/mocking/) for mocking graphql backend
+
 ## Todo:
 
 - Integrate [Urql DevTools](https://github.com/FormidableLabs/urql-devtools)
