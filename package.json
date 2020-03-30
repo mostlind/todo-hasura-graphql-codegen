@@ -11,7 +11,7 @@
     "start:backend": "docker-compose up -d",
     "stop:backend": "docker-compose down",
     "migrate": "hasura migrate apply",
-    "build": "NODE_ENV=\"production\"; parcel build src/index.html --experimental-scope-hoisting "
+    "build": "NODE_ENV=\"production\"; parcel build src/index.html"
   },
   "author": "",
   "license": "ISC",
