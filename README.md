@@ -50,9 +50,14 @@ For graphql auto-complete, install [this package](https://marketplace.visualstud
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to render components, fire events, etc.
 - [Graphql Tools](https://www.apollographql.com/docs/graphql-tools/mocking/) for mocking graphql backend
 
+## Urql DevTools
+
+[Urql devtools](https://github.com/FormidableLabs/urql-devtools) are available for firefox and chrome to monitor requests and cache hit/miss results. Also allows you to run queries.
+
+They work better on Chrome.
+
 ## Todo:
 
-- Integrate [Urql DevTools](https://github.com/FormidableLabs/urql-devtools)
 - Add Google Analytics with `react-ga` library
 - Add react router and hook up route changes to Google Analytics
 - Storybook UI for interactive documentation?
