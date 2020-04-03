@@ -56,9 +56,33 @@ For graphql auto-complete, install [this package](https://marketplace.visualstud
 
 They work better on Chrome.
 
+## Storybook
+
+To start run `npm run storybook`
+
+- TODO: describe how to write stories
+- Setup MDX documentation
+
+## Grafana
+
+Grafana runs at `localhost:3000`
+
+Can be used to make graphs measuring performance
+
+TODO: set up metrics example
+
 ## Todo:
 
 - Add Google Analytics with `react-ga` library
+  - Log user events (form completions, invalid form inputs, page changes, modal openings, other user actions)
 - Add react router and hook up route changes to Google Analytics
 - Storybook UI for interactive documentation?
 - Remove Material UI, maybe check out Reach UI instead?
+- Feature flags over environments?
+- Implement better logging (https://github.com/pimterry/loglevel)
+  - create log structure, e.g. log, metric, error + json structure
+  - create unique id for session
+  - give info about browser, window size etc
+  - Send logs to server? (json logging, postgres / graphana or elastisearch / kibana?)
+  - performance / memory usage / load times?
+- Internationalization

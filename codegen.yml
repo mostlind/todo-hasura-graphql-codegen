@@ -13,6 +13,6 @@ generates:
       withHooks: true
       withComponent: false
 
-  schema.graphql:
+  graphql.schema.json:
     plugins:
-      - schema-ast
+      - introspection

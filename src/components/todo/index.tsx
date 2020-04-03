@@ -5,7 +5,7 @@ import {
   useStartTodoMutation,
   useCompleteTodoMutation,
   useSubTasksForTodoQuery,
-  useAddSubtaskToDoMutation
+  useAddSubtaskToDoMutation,
 } from "../../generated/graphql";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -35,9 +35,9 @@ export function Todo({ todo }: TodoProps) {
   const [completeTodoResponse, completeTodo] = useCompleteTodoMutation();
   const [subTasks] = useSubTasksForTodoQuery({
     variables: { todo_id: id },
-    context
+    context,
   });
-  const [subtask, createSubtask] = useAddSubtaskToDoMutation();
+  const [_subtask, createSubtask] = useAddSubtaskToDoMutation();
 
   if (startTodoResponse.error) {
     console.error(startTodoResponse.error);

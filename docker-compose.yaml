@@ -9,6 +9,13 @@ services:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
+
+  grafana:
+    image: grafana/grafana
+    restart: always
+    ports: 
+      - "3000:3000"
+
   graphql-engine:
     image: hasura/graphql-engine:v1.1.0
     ports:
