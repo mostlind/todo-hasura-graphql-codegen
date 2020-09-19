@@ -1,7 +1,0 @@
-mutation AddSubtaskToDo($todo_id: uuid!, $description: String!) {
-  insert_sub_tasks(objects: { description: $description, todo_id: $todo_id }) {
-    returning {
-      id
-    }
-  }
-}

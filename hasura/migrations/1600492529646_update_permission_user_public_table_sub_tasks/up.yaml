@@ -1,0 +1,14 @@
+- args:
+    permission:
+      backend_only: false
+      columns:
+      - description
+      - id
+      - todo_id
+      filter: {}
+      set: {}
+    role: user
+    table:
+      name: sub_tasks
+      schema: public
+  type: create_update_permission

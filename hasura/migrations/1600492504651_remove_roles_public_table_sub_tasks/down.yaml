@@ -1,0 +1,41 @@
+- args:
+    permission:
+      backend_only: false
+      check: {}
+      columns:
+      - description
+      - id
+      - todo_id
+      set: {}
+    role: user
+    table:
+      name: sub_tasks
+      schema: public
+  type: create_insert_permission
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - description
+      - id
+      - todo_id
+      computed_fields: []
+      filter: {}
+    role: user
+    table:
+      name: sub_tasks
+      schema: public
+  type: create_select_permission
+- args:
+    permission:
+      columns:
+      - description
+      - id
+      - todo_id
+      filter: {}
+      set: {}
+    role: user
+    table:
+      name: sub_tasks
+      schema: public
+  type: create_update_permission

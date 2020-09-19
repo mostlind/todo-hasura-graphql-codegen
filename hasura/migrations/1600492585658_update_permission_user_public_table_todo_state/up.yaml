@@ -1,0 +1,14 @@
+- args:
+    permission:
+      allow_aggregations: false
+      backend_only: false
+      columns:
+      - todo_state
+      computed_fields: []
+      filter: {}
+      limit: null
+    role: user
+    table:
+      name: todo_state
+      schema: public
+  type: create_select_permission

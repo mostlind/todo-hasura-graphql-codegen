@@ -86,3 +86,4 @@ TODO: set up metrics example
   - Send logs to server? (json logging, postgres / graphana or elastisearch / kibana?)
   - performance / memory usage / load times?
 - Internationalization
+- Look into https://registry.terraform.io/modules/FormidableLabs/serverless/aws/1.0.0
